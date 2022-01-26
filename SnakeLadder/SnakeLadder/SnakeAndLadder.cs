@@ -9,16 +9,16 @@ namespace SnakeLadder
     internal class SnakeAndLadder
     {
         public const int NO_PLAY = 0, SNAKE = 1, LADDER = 2, WINNING = 100;
-        public int StartPoint = 0;
-        public int DiceRoll;
+        public int Start = 0;
+        public int RolledDice;
         int Option = 0;
-        public void StartPlaying()
+        public void GamePlayed()
         {
-            while (this.StartPoint < 100)
+            while (this.Start < 100)
             {
                 Random Random = new Random();
-                DiceRoll = Random.Next(1, 7);
-                Console.WriteLine("player Roll  Dice number is:" + " " + DiceRoll);
+                RolledDice = Random.Next(1, 7);
+                Console.WriteLine("player Roll  Dice number is:" + " " + RolledDice);
                 Option = Random.Next(0, 3);
                 Console.WriteLine("Dice value:" + Option);
                 switch (Option)
@@ -27,20 +27,16 @@ namespace SnakeLadder
                         Console.WriteLine("No Play");
                         break;
                     case SNAKE:
-                        StartPoint += DiceRoll;
-                        Console.WriteLine("Got Ladder:" + StartPoint);
+                        Start += RolledDice;
+                        Console.WriteLine("Got Ladder:" + Start);
                         break;
                     case LADDER:
-                        StartPoint -= DiceRoll;
-                        Console.WriteLine("Snake Attack:" + StartPoint);
+                        Start -= RolledDice;
+                        Console.WriteLine("Snake Attack:" + Start);
                         break;
                     default:
                         Console.WriteLine("Invalid Option");
                         break;
-                }
-                if (StartPoint < 0)
-                {
-                    StartPoint = 0;
                 }
             }
         }

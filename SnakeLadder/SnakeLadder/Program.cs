@@ -13,7 +13,7 @@ namespace SnakeLadder
             Console.WriteLine("Welcome to snake and ladder problem");
             
             SnakeAndLadder Player = new SnakeAndLadder();
-            Player.StartPlaying();
+            Player.GamePlayed();
             Console.ReadKey();
         }
     }
