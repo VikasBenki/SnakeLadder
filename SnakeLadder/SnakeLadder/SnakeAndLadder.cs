@@ -9,36 +9,46 @@ namespace SnakeLadder
     internal class SnakeAndLadder
     {
         public const int NO_PLAY = 0, SNAKE = 1, LADDER = 2, WINNING = 100;
-        public int Start = 0;
-        public int RolledDice;
+        public int StartPoint = 0;
+        public int DiceRoll;
         int Option = 0;
-        public void GamePlayed()
+        int count = 0;
+        public void StartPlaying()
         {
-            while (this.Start < 100)
+            while (this.StartPoint != 100)
             {
+                count++;
                 Random Random = new Random();
-                RolledDice = Random.Next(1, 7);
-                Console.WriteLine("player Roll  Dice number is:" + " " + RolledDice);
+                DiceRoll = Random.Next(1, 7);
+
+                Console.WriteLine("player Roll  Dice number is:" + " " + DiceRoll);
                 Option = Random.Next(0, 3);
-                Console.WriteLine("Dice value:" + Option);
+                Console.WriteLine("option value:" + Option);
                 switch (Option)
                 {
                     case NO_PLAY:
                         Console.WriteLine("No Play");
                         break;
                     case SNAKE:
-                        Start += RolledDice;
-                        Console.WriteLine("Got Ladder:" + Start);
+                        StartPoint -= DiceRoll;
+                        Console.WriteLine("Snake Attack:" + StartPoint);
                         break;
                     case LADDER:
-                        Start -= RolledDice;
-                        Console.WriteLine("Snake Attack:" + Start);
+                        StartPoint += DiceRoll;
+                        Console.WriteLine("Got Ladder:" + StartPoint);
                         break;
                     default:
                         Console.WriteLine("Invalid Option");
                         break;
                 }
+                if (StartPoint < 0)
+                {
+                    StartPoint = 0;
+                }
             }
+            Console.WriteLine("Number of times Dice Roll " + count);
+            Console.WriteLine("congratulation");
+            Console.WriteLine("Game ended");
         }
     }
 }
